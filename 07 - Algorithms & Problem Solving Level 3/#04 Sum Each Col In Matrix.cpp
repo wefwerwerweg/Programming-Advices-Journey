@@ -1,4 +1,5 @@
 // #4 Sum Each Col In Matrix
+// https://programmingadvices.com/courses/1869980/lectures/42442197/comments/25838952
 
 #include <iostream>
 #include <iomanip>
