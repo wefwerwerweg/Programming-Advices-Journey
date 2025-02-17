@@ -19,7 +19,7 @@ vector<string> SplitString(string text, string delim)
 		if (sWord != "") tokens.push_back(sWord);
 		text.erase(0, pos + delim.length()); // erase() until positon and move to next word.
 	}
-	if (text != "") tokens.push_back(sWord); // include last word of the string.
+	if (text != "") tokens.push_back(text); // include last word of the string.
 	return tokens;
 }
 
