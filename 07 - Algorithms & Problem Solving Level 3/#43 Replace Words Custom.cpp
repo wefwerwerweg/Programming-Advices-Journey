@@ -46,21 +46,6 @@ string ReplaceStringWords(string text, string oldWord, string newWord, bool matc
 	return text.substr(0, text.length() - 1); //remove last space.
 }
 
-/* Instructor solution:
-string ReplaceWordInStringUsingBuiltInFunction(string S1, string
-	StringToReplace, string sRepalceTo)
-{
-	short pos = S1.find(StringToReplace);
-	while (pos != std::string::npos)
-	{
-		S1 = S1.replace(pos, StringToReplace.length(),
-			sRepalceTo);
-		pos = S1.find(StringToReplace);//find next
-	}
-	return S1;
-}
-*/
-
 int main()
 {
 	string text, oldWord, newWord;
