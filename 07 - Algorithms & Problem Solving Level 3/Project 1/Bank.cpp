@@ -89,7 +89,7 @@ void PrintAllClientsData(vector<strClient>& vClients)
 	cout << "____________________________________________\n" << endl;
 	cout << "| " << left << setw(15) << "Accout Number";
 	cout << "| " << left << setw(10) << "Pin Code";
-	cout << "| " << left << setw(40) << "        Client Name";
+	cout << "| " << left << setw(40) << "Client Name";
 	cout << "| " << left << setw(12) << "Phone";
 	cout << "| " << left << setw(12) << "Balance";
 	cout << "\n____________________________________________________";
