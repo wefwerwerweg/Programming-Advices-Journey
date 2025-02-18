@@ -112,12 +112,10 @@ vector<strClient>::iterator FindClientByAccNum(vector<strClient>& vClients, stri
 void UpdClientByAccNum(vector<strClient>& vClients, string accNum)
 {
 	vector<strClient>::iterator iter = FindClientByAccNum(vClients, accNum);
-	bool found = false;
 	char confirmUpd;
 
 	if (iter != vClients.end())
 	{
-		found = true;
 		PrintClientRecord(*iter);
 		cout << "\n\nAre You Sure You Want To Update This Client [y/n]? ";
 		cin >> confirmUpd;
