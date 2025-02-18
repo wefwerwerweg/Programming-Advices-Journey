@@ -101,31 +101,34 @@ vector<strClient> LoadClientsDataFromFile(string fileName)
 	return vClients;
 }
 
-void DelClientByAccNum(vector<strClient>& vClients, string accNum)
+vector<strClient>::iterator FindClientByAccNum(vector<strClient>& vClients, string accNum)
 {
 	vector<strClient>::iterator iter;
+	for (iter = vClients.begin(); iter != vClients.end(); iter++)
+		if (iter->AccountNumber == accNum) break;
+	return iter;
+}
+
+void DelClientByAccNum(vector<strClient>& vClients, string accNum)
+{
+	vector<strClient>::iterator iter = FindClientByAccNum(vClients, accNum);
 	bool found = false;
 	char confirmDel;
 
-	for (iter = vClients.begin(); iter != vClients.end(); iter++)
+	if (iter != vClients.end())
 	{
-		if (iter->AccountNumber == accNum)
+		found = true;
+		PrintClientRecord(*iter);
+		cout << "\n\nAre You Sure You Want To Delete This Client [y/n]? ";
+		cin >> confirmDel;
+		if (tolower(confirmDel) == 'y')
 		{
-			found = true;
-			PrintClientRecord(*iter);
-			cout << "\n\nAre You Sure You Want To Delete This Client [y/n]? ";
-			cin >> confirmDel;
-			if (tolower(confirmDel) == 'y')
-			{
-				vClients.erase(iter);
-				SaveClientsDataToFile(vClients);
-				cout << "\nClient Deleted Successfully.\n";
-			}
-			break;
+			vClients.erase(iter);
+			SaveClientsDataToFile(vClients);
+			cout << "\nClient Deleted Successfully.\n";
 		}
 	}
-
-	if (!found) cout << "\nThe Client With Account Number (" << accNum << ") Is Not Found.\n";
+	else cout << "\nThe Client With Account Number (" << accNum << ") Is Not Found.\n";
 }
 
 int main()
