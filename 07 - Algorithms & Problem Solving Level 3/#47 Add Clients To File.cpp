@@ -22,13 +22,13 @@ strClient NewClient()
 {
 	strClient client;
 	cout << "Enter Account Number: ";
-	getline(cin >> ws, client.AccountNumber);
+	cin >> ws >> client.AccountNumber;
 	cout << "Enter Pin Code: ";
-	getline(cin, client.PinCode);
+	cin >> client.PinCode;
 	cout << "Enter Name: ";
-	getline(cin, client.Name);
+	getline(cin >> ws, client.Name);
 	cout << "Enter Phone: ";
-	getline(cin, client.Phone);
+	cin >> client.Phone;
 	cout << "Enter Account Balance: ";
 	cin >> client.AccountBalance;
 	return client;
