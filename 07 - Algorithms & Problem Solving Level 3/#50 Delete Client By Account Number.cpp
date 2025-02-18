@@ -112,12 +112,10 @@ vector<strClient>::iterator FindClientByAccNum(vector<strClient>& vClients, stri
 void DelClientByAccNum(vector<strClient>& vClients, string accNum)
 {
 	vector<strClient>::iterator iter = FindClientByAccNum(vClients, accNum);
-	bool found = false;
 	char confirmDel;
 
 	if (iter != vClients.end())
 	{
-		found = true;
 		PrintClientRecord(*iter);
 		cout << "\n\nAre You Sure You Want To Delete This Client [y/n]? ";
 		cin >> confirmDel;
