@@ -66,13 +66,13 @@ int DatesDiffInDays(stDate date1, stDate date2, bool includeEndDay = false)
 		}
 		else
 		{
-			diffInDays += date2.day;
+			diffInDays += (date2.day - date1.day);
 			date1.day = date2.day;
 			break;
 		}
 	}
 
-	return includeEndDay ? diffInDays : --diffInDays;
+	return includeEndDay ? ++diffInDays : diffInDays;
 }
 
 short ShortInput()
