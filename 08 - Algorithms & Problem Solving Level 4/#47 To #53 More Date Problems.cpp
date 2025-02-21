@@ -1,8 +1,6 @@
 // #47 To #53 More Date Problems
 // https://programmingadvices.com/courses/1890122/lectures/43136394/comments/25881337
 
-#pragma warning(disable : 4996)
-
 #include <iostream>
 
 using namespace std;
