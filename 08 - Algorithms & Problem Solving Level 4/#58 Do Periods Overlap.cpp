@@ -47,8 +47,8 @@ bool IsDate1AfterDate2(stDate date1, stDate date2)
 
 bool DoPeriodsOverlap(stPeriod period1, stPeriod period2)
 {
-	return (IsDate1BeforeDate2(period1.start, period2.end)
-		|| IsDate1AfterDate2(period1.end, period2.start));
+	return (IsDate1BeforeDate2(period2.end, period1.start)
+		|| IsDate1AfterDate2(period2.start, period1.end));
 }
 
 short ShortInput()
