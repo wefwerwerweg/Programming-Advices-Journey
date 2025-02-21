@@ -25,9 +25,10 @@ short GetMonthDays(short year, short month)
 
 bool IsDate1LessThanDate2(stDate date1, stDate date2)
 {
-	return (date1.year < date2.year) ? true : 
-		((date1.year == date2.year) ? (date1.month < date2.month ? true :
-			(date1.month == date2.month ? date1.day < date2.day : false)) : false);
+	return (date1.year < date2.year) 
+		|| (date1.year == date2.year && date1.month < date2.month) 
+		|| (date1.year == date2.year && date1.month == date2.month
+			&& date1.day < date2.day);
 }
 
 short ShortInput()
