@@ -27,10 +27,10 @@ short GetMonthDays(short year, short month)
 
 bool IsDate1BeforeDate2(stDate date1, stDate date2)
 {
-	if (date1.year < date2.year) return true;
-	else if (date1.month < date2.month) return true;
-	else if (date1.day < date2.day) return true;
-	return false;
+	return (date1.year < date2.year) 
+		|| (date1.year == date2.year && date1.month < date2.month) 
+		|| (date1.year == date2.year && date1.month == date2.month
+			&& date1.day < date2.day);
 }
 
 bool AreDatesEqual(stDate date1, stDate date2)
