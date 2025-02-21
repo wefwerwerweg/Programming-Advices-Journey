@@ -5,8 +5,6 @@
 
 using namespace std;
 
-enum enDateCompare { Before = -1, Equal = 0, After = 1 };
-
 struct stDate
 {
 	short year;
