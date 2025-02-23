@@ -23,16 +23,10 @@ bool IsLeapYear(short year)
 	return year % 400 == 0 || (year % 4 == 0 && year % 100 != 0);
 }
 
-short GetMonthDays(short year, short month)
-{
-	short MonthsDays[12] = { 31,28,31,30,31,30,31,31,30,31,30,31 };
-	return month == 2 ? (IsLeapYear(year) ? 29 : 28) : MonthsDays[month - 1];
-}
-
 bool IsDate1BeforeDate2(stDate date1, stDate date2)
 {
-	return (date1.year < date2.year) 
-		|| (date1.year == date2.year && date1.month < date2.month) 
+	return (date1.year < date2.year)
+		|| (date1.year == date2.year && date1.month < date2.month)
 		|| (date1.year == date2.year && date1.month == date2.month
 			&& date1.day < date2.day);
 }
@@ -45,10 +39,39 @@ bool IsDate1AfterDate2(stDate date1, stDate date2)
 			&& date1.day > date2.day);
 }
 
+short GetMonthDays(short year, short month)
+{
+	short MonthsDays[12] = { 31,28,31,30,31,30,31,31,30,31,30,31 };
+	return month == 2 ? (IsLeapYear(year) ? 29 : 28) : MonthsDays[month - 1];
+}
+
+// for explaination: period1 is: [], period2 is: <>.
+// overlap true:
+// case1: [<>]
+// case2: <[]>
+// case3: [<]>
+// case4: <[>]
+// case5: [] == <>
+// 
+// overlap false:
+// case1: [] <>
+// case2: <> []
+// 
+// 2 checks are easier than 5 checks, right?
 bool DoPeriodsOverlap(stPeriod period1, stPeriod period2)
 {
-	return (IsDate1BeforeDate2(period2.end, period1.start)
-		|| IsDate1AfterDate2(period2.start, period1.end));
+	// if [] <> return false
+	if (IsDate1BeforeDate2(period1.start, period2.start)
+		&& IsDate1BeforeDate2(period1.end, period2.start))
+		return false;
+
+	// if <> [] return false
+	if (IsDate1AfterDate2(period1.start, period2.end)
+		&& IsDate1AfterDate2(period1.end, period2.end))
+		return false;
+
+	// else return true (yes they overlap)
+	return true;
 }
 
 short ShortInput()
@@ -65,12 +88,23 @@ short ShortInput()
 	return input;
 }
 
+short YearInput()
+{
+	short input = ShortInput();
+	while (input > 9999)
+	{
+		cout << "Max is 9999! Try again: ";
+		input = ShortInput();
+	}
+	return input;
+}
+
 short MonthInput()
 {
 	short input = ShortInput();
 	while (input > 12)
 	{
-		cout << "Invalid input! Enter a valid one: ";
+		cout << "Max is 12! Try again: ";
 		input = ShortInput();
 	}
 	return input;
@@ -80,9 +114,10 @@ short MonthInput()
 short DayInput(short year, short month)
 {
 	short input = ShortInput();
-	while (input > GetMonthDays(year, month))
+	short monthDays = GetMonthDays(year, month);
+	while (input > monthDays)
 	{
-		cout << "Invalid input! Enter a valid one: ";
+		printf("Max is %d! Try again: ", monthDays);
 		input = ShortInput();
 	}
 	return input;
@@ -92,7 +127,7 @@ stDate ReadDate()
 {
 	stDate date;
 	cout << "Enter a year : ";
-	date.year = ShortInput();
+	date.year = YearInput();
 	cout << "Enter a month: ";
 	date.month = MonthInput();
 	cout << "Enter a day  : ";
@@ -100,27 +135,54 @@ stDate ReadDate()
 	return date;
 }
 
+stPeriod ReadPeriod(short periodNum = 0)
+{
+	stPeriod period;
+	cout << "Enter Period ";
+	if (periodNum) cout << periodNum;
+
+	cout << "\n\nEnter start date\n";
+	period.start = ReadDate();
+
+	cout << "\nEnter end date\n";
+	period.end = ReadDate();
+
+	while (!IsDate1AfterDate2(period.end, period.start))
+	{
+		cout << "ERROR: Period end date must be after period start date.\n";
+		cout << "\nEnter end date\n";
+		period.end = ReadDate();
+	}
+
+	return period;
+}
+
 int main()
 {
-	stPeriod period1;
-	cout << "Enter Period 1\n\n";
-	cout << "Enter start date\n";
-	period1.start = ReadDate();
-	cout << "\nEnter end date\n";
-	period1.end = ReadDate();
-	cout << "----------------\n";
+	do
+	{
+		system("cls");
+		printf("\n");
 
-	stPeriod period2;
-	cout << "\nEnter Period 2\n\n";
-	cout << "Enter start date\n";
-	period2.start = ReadDate();
-	cout << "\nEnter end date\n";
-	period2.end = ReadDate();
-	cout << "----------------\n";
+		stPeriod period1 = ReadPeriod(1);
+		printf("------------------------\n");
+		printf("%02d/%02d/%04d To %02d/%02d/%04d",
+			period1.start.day, period1.start.month, period1.start.year,
+			period1.end.day, period1.end.month, period1.end.year);
+		printf("\n------------------------\n\n");
 
-	if (DoPeriodsOverlap(period1, period2))
-		cout << "\nYes, periods overlap.\n";
-	else cout << "\nNo, periods don't overlap.\n";
+		stPeriod period2 = ReadPeriod(2);
+		printf("------------------------\n");
+		printf("%02d/%02d/%04d To %02d/%02d/%04d",
+			period2.start.day, period2.start.month, period2.start.year,
+			period2.end.day, period2.end.month, period2.end.year);
+		printf("\n------------------------\n\n");
+
+		if (DoPeriodsOverlap(period1, period2))
+			cout << "Yes, they overlap.\n";
+		else cout << "No, they don't overlap.\n";
+		system("pause>0");
+	} while (true);
 
 	return 0;
 }
