@@ -1,4 +1,4 @@
-// #58 Do Periods Overlap
+// #58 Do Periods Overlap (My Solution)
 // https://programmingadvices.com/courses/1890122/lectures/43138483/comments/25882837
 
 #include <iostream>
