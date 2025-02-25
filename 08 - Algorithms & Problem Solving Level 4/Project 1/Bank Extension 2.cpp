@@ -940,8 +940,7 @@ void MainMenu()
 void Login()
 {
 	bool loginFailed = false;
-	//string username, password;
-	string username = "Admin", password = "1234";
+	string username, password;
 	do
 	{
 		system("cls");
@@ -950,9 +949,9 @@ void Login()
 		cout << "\n-------------------------------\n";
 		if (loginFailed) cout << "Invalid Username/Password!\n";
 		cout << "\nEnter Username: ";
-		//cin >> username;
+		cin >> username;
 		cout << "\nEnter Password: ";
-		//cin >> password;
+		cin >> password;
 
 		vector<stUser>::iterator iter = FindUser(username);
 		if (iter == vUsers.end()) loginFailed = true; //user not found
