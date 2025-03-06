@@ -1,47 +1,75 @@
 // Copy Array In Reverse Order
-// https://programmingadvices.com/courses/1811531/lectures/41411122/comments/25786255
-// https://programmingadvices.com/courses/1811531/lectures/41411122/comments/25786344
 
 #include <iostream>
-
+#include <cstdlib>
+#include <ctime>
 using namespace std;
 
-int RandomNumber(int From, int To)
-{
-	return rand() % (To - From + 1) + From;
+// Function to get a positive number from the user
+int getPositiveNumber(const string& prompt) {
+    int number;
+    while (true) {
+        cout << prompt;
+        cin >> number;
+        if (number > 0) break;
+        cout << "Please enter a positive number.\n";
+    }
+    return number;
 }
 
-void AddElements(int arr[], int length)
-{
-	for (int i = 0; i < length; i++)
-		arr[i] = RandomNumber(1, 100);
+// Function to generate a random number in the specified range [from, to]
+int generateRandomNumber(int from, int to) {
+    return rand() % (to - from + 1) + from;
 }
 
-void ReverseCopyArray(int arr1[], int arr2[], int length)
-{
-	for (int i = 0; i < length; i++)
-		arr2[i] = arr1[length - i - 1];
+// Function to fill an array with random numbers in the range [1, 99]
+void fillArrayWithRandomNumbers(int array[], int size) {
+    for (int i = 0; i < size; i++) {
+        array[i] = generateRandomNumber(1, 99);
+    }
 }
 
-void PrintArray(int arr[], int length)
-{
-	for (int i = 0; i < length; i++)
-		cout << arr[i] << ' ';
-	cout << endl;
+// Function to print the contents of an array
+void printArray(const int array[], int size) {
+    cout << "Array Elements: ";
+    for (int i = 0; i < size; i++) {
+        cout << array[i] << " ";
+    }
+    cout << endl;
 }
 
-int main()
-{
-	srand((unsigned)time(NULL));
-	int arr1[100], arr2[100], length;
-	cout << "Number Of Elements: ";
-	cin >> length;
-
-	AddElements(arr1, length);
-	ReverseCopyArray(arr1, arr2, length);
-
-	cout << "\nArray 1 Elements:\n";
-	PrintArray(arr1, length);
-	cout << "\nArray 2 Elements After Reverse Copy:\n";
-	PrintArray(arr2, length);
+// Function to reverse the elements of an array
+void reverseArray(const int original[], int reversed[], int size) {
+    for (int i = 0; i < size; i++) {
+        reversed[i] = original[size - i - 1];
+    }
 }
+
+// Main function: Entry point of the program
+int main() {
+    srand((unsigned)time(NULL));
+
+    // Declare arrays to store original and reversed arrays
+    int arr[100], reversedArr[100];
+
+    // Get the number of elements from the user
+    int arrLength = getPositiveNumber("How many elements? ");
+
+    // Fill the array with random numbers
+    fillArrayWithRandomNumbers(arr, arrLength);
+
+    // Reverse the array
+    reverseArray(arr, reversedArr, arrLength);
+
+    // Print the original array
+    cout << "Original Array:\n";
+    printArray(arr, arrLength);
+
+    // Print the reversed array
+    cout << "\nArray After Reverse:\n";
+    printArray(reversedArr, arrLength);
+
+    return 0;
+}
+
+// Coded By IcarusGhost
