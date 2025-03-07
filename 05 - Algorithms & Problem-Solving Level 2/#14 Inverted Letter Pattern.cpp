@@ -1,24 +1,36 @@
-// Inverted Letter Pattern
-// https://programmingadvices.com/courses/1811531/lectures/41358733/comments/25774905
+// Problem: Print Inverted Letter Pattern
+// Coded By: @X99099
 
 #include <iostream>
-
 using namespace std;
 
-void InvertedLetterPattern(int n)
+int getPositiveNumber(string msg)
 {
-	for (int i = n; i > 0; i--)
-	{
-		for (int j = 0; j < i; j++) cout << char(i + 64);
-		cout << endl;
-	}
+    int num = 0;
+    do
+    {
+        cout << msg << endl;
+        cin >> num;
+    } while (num <= 0);
+    return num;
+}
+
+void printInvertedLetterPattern(int num)
+{
+    cout << "\n";
+
+    for (int i = 65 + num - 1; i >= 65; i--)
+    {
+        for (int j = 1; j <= num - ((65 + num - 1) - i); j++)
+        {
+            cout << char(i);
+        }
+        cout << "\n";
+    }
 }
 
 int main()
 {
-	int n;
-	cout << "Enter Number Of Letters: ";
-	cin >> n;
-	cout << endl;
-	InvertedLetterPattern(n);
+    printInvertedLetterPattern(getPositiveNumber("Please enter a positive number?"));
+    return 0;
 }
