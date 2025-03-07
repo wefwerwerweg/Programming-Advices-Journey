@@ -1,34 +1,47 @@
-// Encrypt/Decrypt Text
-// https://programmingadvices.com/courses/1811531/lectures/41359655/comments/25775864
+// Problem: Text Encryption and Decryption
+// Coded By: @X99099
 
 #include <iostream>
-
+#include <string>
 using namespace std;
 
-string Encrypt(string text)
+string ReadText()
 {
-	string encrypted = "";
-	for (int i = 0; i < text.length(); i++)
-		encrypted += (text[i] + 1);
-	return encrypted;
+    string Text;
+    cout << "Please enter Text?\n";
+    getline(cin, Text);
+    return Text;
 }
 
-string Decrypt(string text)
+string EncryptText(string Text, short EncryptionKey)
 {
-	string decrypted = "";
-	for (int i = 0; i < text.length(); i++)
-		decrypted += (text[i] - 1);
-	return decrypted;
+    for (int i = 0; i < Text.length(); i++)
+    {
+        Text[i] = char(int(Text[i]) + EncryptionKey);
+    }
+    return Text;
+}
+
+string DecryptText(string Text, short EncryptionKey)
+{
+    for (int i = 0; i < Text.length(); i++)
+    {
+        Text[i] = char(int(Text[i]) - EncryptionKey);
+    }
+    return Text;
 }
 
 int main()
 {
-	string text;
-	cout << "Enter Text: ";
-	cin >> text;
-	string encrypted = Encrypt(text);
+    const short EncryptionKey = 2;
 
-	cout << "\nText Before Encryption: " << text << endl;
-	cout << "Text After  Encryption: " << encrypted << endl;
-	cout << "Text After  Decryption: " << Decrypt(encrypted) << endl;
+    string Text = ReadText();
+    string TextAfterEncryption = EncryptText(Text, EncryptionKey);
+    string TextAfterDecryption = DecryptText(TextAfterEncryption, EncryptionKey);
+
+    cout << "\nText Before Encryption : " << Text << endl;
+    cout << "Text After Encryption  : " << TextAfterEncryption << endl;
+    cout << "Text After Decryption  : " << TextAfterDecryption << endl;
+
+    return 0;
 }
