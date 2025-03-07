@@ -1,33 +1,61 @@
 // Keys Generator.
-// https://programmingadvices.com/courses/1811531/lectures/41359860/comments/25779861
+// Coded By: @X99099
 
 #include <iostream>
+#include <string>
+#include <cstdlib>
+#include <ctime>
 
 using namespace std;
 
-int RandomNumber(int From, int To)
-{
-	int randNum = rand() % (To - From + 1) + From;
-	return randNum;
+enum enCharType { SmallLetter = 1, CapitalLetter = 2, SpecialCharacter = 3, Digit = 4 };
+
+int RandomNumber(int From, int To) {
+    return rand() % (To - From + 1) + From;
 }
 
-string GenerateKey()
-{
-	string key = "";
+char GetRandomCharacter(enCharType CharType) {
+    switch (CharType) {
+        case SmallLetter: return char(RandomNumber('a', 'z'));
+        case CapitalLetter: return char(RandomNumber('A', 'Z'));
+        case SpecialCharacter: return char(RandomNumber(33, 47));
+        case Digit: return char(RandomNumber('0', '9'));
+    }
+    return '\0';
+}
 
-	for (int i = 0; i < 4; i++)
-	{
-		for (int j = 0; j < 4; j++)
-			key += char(RandomNumber(65, 90));
+int ReadPositiveNumber(string Message) {
+    int Number = 0;
+    do {
+        cout << Message << endl;
+        cin >> Number;
+    } while (Number <= 0);
+    return Number;
+}
 
-		if (i != 3) key += '-';
-	}
+string GenerateWord(enCharType CharType, short Length) {
+    string Word;
+    for (int i = 1; i <= Length; i++) {
+        Word += GetRandomCharacter(CharType);
+    }
+    return Word;
+}
 
-	return key;
+string GenerateKey() {
+    return GenerateWord(CapitalLetter, 4) + "-" + GenerateWord(CapitalLetter, 4) + "-" + GenerateWord(CapitalLetter, 4) + "-" + GenerateWord(CapitalLetter, 4);
+}
+
+void GenerateKeys(short NumberOfKeys) {
+    for (int i = 1; i <= NumberOfKeys; i++) {
+        cout << "Key [" << i << "] : " << GenerateKey() << endl;
+    }
 }
 
 int main() {
-	srand((unsigned)time(NULL));
+    srand((unsigned)time(NULL));
+    GenerateKeys(ReadPositiveNumber("Please enter how many keys to generate: "));
+    return 0;
+};
 
 	int n;
 	cout << "Number Of Keys To Generate: ";
