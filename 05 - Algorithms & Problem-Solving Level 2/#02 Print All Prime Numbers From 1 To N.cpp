@@ -1,28 +1,48 @@
-// Print All Prime Numbers From 1 To N
-// https://programmingadvices.com/courses/1811531/lectures/41203608/comments/25767535
+// Problem: Print Prime Numbers Up to N
+// Coded By: @X99099
 
 #include <iostream>
-
+#include <string>
 using namespace std;
 
-bool CheckPrime(int x)
+enum PrimeStatus { Prime = 1, NotPrime = 2 };
+
+int GetPositiveNumber(string Message)
 {
-	if (x <= 1) return false;
-	if (x == 2) return true;
-	if (x % 2 == 0) return false;
+    int Number = 0;
+    do
+    {
+        cout << Message << endl;
+        cin >> Number;
+    } while (Number <= 0);
+    
+    return Number;
+}
 
-	for (int i = 3; i <= sqrt(x); i += 2)
-		if (x % i == 0) return false;
+PrimeStatus IsPrime(int Number)
+{
+    for (int i = 2; i <= Number / 2; i++)
+    {
+        if (Number % i == 0)
+            return NotPrime;
+    }
+    
+    return Prime;
+}
 
-	return true;
+void DisplayPrimes(int Number)
+{
+    cout << "\nPrime Numbers up to " << Number << " are:\n";
+    
+    for (int i = 1; i <= Number; i++)
+    {
+        if (IsPrime(i) == Prime)
+            cout << i << endl;
+    }
 }
 
 int main()
 {
-	int n;
-	cout << "Print All Prime Numbers From 1 To: ";
-	cin >> n;
-
-	for (int i = 1; i <= n; i++)
-		if (CheckPrime(i)) cout << i << endl;
+    DisplayPrimes(GetPositiveNumber("Enter a positive number: "));
+    return 0;
 }
