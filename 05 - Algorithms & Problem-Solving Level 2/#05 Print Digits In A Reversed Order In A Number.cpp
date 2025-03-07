@@ -1,20 +1,31 @@
-// Print Digits In A Reversed Order In A Number
-// https://programmingadvices.com/courses/1811531/lectures/41306881/comments/25772509
+// Problem: Print Digits of a Number in Reverse Order
+// Coded By: @X99099
 
 #include <iostream>
-
 using namespace std;
 
-void PrintReversed(string n)
+int ReadPositiveNumber(string Message)
 {
-	for (int i = n.length() - 1; i >= 0; i--)
-		cout << n[i];
+    int Number;
+    do
+    {
+        cout << Message << endl;
+        cin >> Number;
+    } while (Number <= 0);
+    return Number;
+}
+
+void PrintDigits(int Number)
+{
+    while (Number > 0)
+    {
+        cout << Number % 10 << endl;
+        Number /= 10;
+    }
 }
 
 int main()
 {
-	string n;
-	cout << "Print Numbers In Reversed Order In: ";
-	cin >> n;
-	PrintReversed(n);
+    PrintDigits(ReadPositiveNumber("Please enter a positive number:"));
+    return 0;
 }
