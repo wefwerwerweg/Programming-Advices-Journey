@@ -52,7 +52,7 @@ void arraySearch(int array[], int number, int size) {
         }
     }
 
-    cout << "The Number Isn't Found ):-" << endl;  // If the number is not found, print a message
+    cout << "The Number Isn't Found :-(" << endl;  // If the number is not found, print a message
 }
 
 // Main function: Entry point of the program
