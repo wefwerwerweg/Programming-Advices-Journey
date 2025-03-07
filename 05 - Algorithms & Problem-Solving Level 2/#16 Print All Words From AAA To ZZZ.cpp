@@ -6,19 +6,19 @@ using namespace std;
 
 void printAllCombinations()
 {
-    string word = "";
+    string word;
 
-    for (char i = 'A'; i <= 'Z'; i++)
+    for (char i = 'A'; i <= 'Z'; i++) 
     {
-        for (char j = 'A'; j <= 'Z'; j++)
+        for (char j = 'A'; j <= 'Z'; j++) 
         {
-            for (char k = 'A'; k <= 'Z'; k++)
+            for (char k = 'A'; k <= 'Z'; k++) 
             {
-                word = char(i) + char(j) + char(k);
+                word = {i, j, k};  // Construct the word directly
                 cout << word << endl;
             }
         }
-        cout << "\n____________________________\n";
+        cout << "\n____________________________\n";  // Separate the groups for readability
     }
 }
 
