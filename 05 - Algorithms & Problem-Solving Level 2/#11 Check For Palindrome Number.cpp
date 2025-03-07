@@ -1,24 +1,42 @@
 // Check For Palindrome Number
-// https://programmingadvices.com/courses/1811531/lectures/41327662/comments/25774652
+// Coded By: @X99099
 
 #include <iostream>
-
+#include <string>
 using namespace std;
 
-string Reverse(string n)
-{
-	string reversed;
-	for (int i = n.length() - 1; i >= 0; i--)
-		reversed += n[i];
-	return reversed;
+int getPositiveNumber(const string& prompt) {
+    int num;
+    do {
+        cout << prompt << endl;
+        cin >> num;
+    } while (num <= 0);
+    
+    return num;
 }
 
-int main()
-{
-	string n;
-	cout << "Check If A Number Is Palindrome: ";
-	cin >> n;
+int reverseNumber(int num) {
+    int remainder = 0, reversed = 0;
+    
+    while (num > 0) {
+        remainder = num % 10;
+        num /= 10;
+        reversed = reversed * 10 + remainder;
+    }
+    
+    return reversed;
+}
 
-	if (Reverse(n) == n) cout << "\nYes, it is a Palindrome number.\n";
-	else cout << "\nNo, it is NOT a Palindrome number.\n";
+bool isPalindrome(int num) {
+    return num == reverseNumber(num);
+}
+
+int main() {
+    int num = getPositiveNumber("Enter a positive number:");
+    if (isPalindrome(num))
+        cout << "\nYes, it is a Palindrome number.\n";
+    else
+        cout << "\nNo, it is NOT a Palindrome number.\n";
+    
+    return 0;
 }
