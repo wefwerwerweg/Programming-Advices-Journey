@@ -1,50 +1,64 @@
-// Resolve problem #28 (Copy Array) Using AddArrayElement
-// https://programmingadvices.com/courses/1811531/lectures/41413801/comments/25786913
-
 #include <iostream>
-
+#include <cstdlib>
+#include <ctime>
 using namespace std;
 
-int RandomNumber(int From, int To)
-{
-	int randNum = rand() % (To - From + 1) + From;
-	return randNum;
+/*
+    Problem: Copy Array Elements Using AddArrayElement
+    Coded By: @X99099
+*/
+
+// Function to generate a random number in a given range
+int randomNumber(int from, int to) {
+    return rand() % (to - from + 1) + from;
 }
 
-void AddElements(int arr[], int length)
-{
-	for (int i = 0; i < length; i++)
-		arr[i] = RandomNumber(1, 100);
+// Function to print the contents of an array
+void printArray(const int array[], int arrLength) {
+    for (int i = 0; i < arrLength; i++) {
+        cout << array[i] << " ";
+    }
+    cout << endl;
 }
 
-void AddArrayElement(int num, int arr[], int& length)
-{
-	arr[length++] = num;
+// Function to fill an array with random numbers between 1 and 99
+void fillArray(int array[], int arrLength) {
+    for (int i = 0; i < arrLength; i++) {
+        array[i] = randomNumber(1, 99);
+    }
 }
 
-void CopyArray(int arr1[], int arr2[], int arr1Length, int& arr2Length)
-{
-	for (int i = 0; i < arr1Length; i++)
-		AddArrayElement(arr1[i], arr2, arr2Length);
+// Function to add a number to the array and track its position
+void addArrayElement(int arr[], int& arrLength, int number) {
+    arr[arrLength++] = number;
 }
 
-void PrintArray(int arr[], int length)
-{
-	for (int i = 0; i < length; i++)
-		cout << arr[i] << ' ';
-	cout << endl;
+// Function to copy elements from one array to another
+void copyArray(int arr1[], int arr2[], int arrLength, int& arr2Length) {
+    for (int i = 0; i < arrLength; i++) {
+        addArrayElement(arr2, arr2Length, arr1[i]);
+    }
 }
 
-int main()
-{
-	srand((unsigned) time(NULL));
-	int arr1[100], arr2[100], arr1Length, arr2Length = 0;
-	cout << "Number Of Elements: ";
-	cin >> arr1Length;
-	AddElements(arr1, arr1Length);
-	CopyArray(arr1, arr2, arr1Length, arr2Length);
-	cout << "\nArray 1 Elements:\n";
-	PrintArray(arr1, arr1Length);
-	cout << "\nArray 2 Elements After Copy:\n";
-	PrintArray(arr2, arr2Length);
+// Main function: Program entry point.
+int main() {
+    srand((unsigned)time(NULL));
+
+    int arr[100];
+    int arrLength = 10;
+
+    fillArray(arr, arrLength);
+
+    int arr2[100];
+    int arr2Length = 0;
+
+    copyArray(arr, arr2, arrLength, arr2Length);
+
+    cout << "\nArray 1 elements:\n";
+    printArray(arr, arrLength);
+
+    cout << "\nArray 2 elements after copy:\n";
+    printArray(arr2, arr2Length);
+
+    return 0;
 }
