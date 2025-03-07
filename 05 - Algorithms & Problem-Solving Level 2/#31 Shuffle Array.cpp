@@ -1,51 +1,47 @@
 // Shuffle Array
-// https://programmingadvices.com/courses/1811531/lectures/41374844/comments/25786206
+// Coded By: @X99099
 
 #include <iostream>
-
 using namespace std;
 
-int RandomNumber(int From, int To)
-{
-	return rand() % (To - From + 1) + From;
+int generateRandom(int min, int max) {
+    return rand() % (max - min + 1) + min;
 }
 
-void AddElements(int arr[], int length)
-{
-	for (int i = 0; i < length; i++)
-		arr[i] = i + 1;
+void fillArrayWithRandomNumbers(int arr[100], int& length) {
+    cout << "\nEnter number of elements:\n";
+    cin >> length;
+    for (int i = 0; i < length; i++) {
+        arr[i] = generateRandom(1, 100);
+    }
 }
 
-void Shuffle(int arr[], int length)
-{
-	for (int i = 0; i < length; i++)
-	{
-		int randIndex = RandomNumber(0, length - 1);
-		int temp = arr[i];
-		arr[i] = arr[randIndex];
-		arr[randIndex] = temp;
-	}
+void printArray(const int arr[100], int length) {
+    for (int i = 0; i < length; i++) {
+        cout << arr[i] << " ";
+    }
+    cout << "\n";
 }
 
-void PrintArray(int arr[], int length)
-{
-	for (int i = 0; i < length; i++)
-		cout << arr[i] << ' ';
-	cout << endl;
+void reverseArray(const int source[100], int dest[100], int length) {
+    for (int i = 0; i < length; i++) {
+        dest[i] = source[length - 1 - i];
+    }
 }
 
-int main()
-{
-	srand((unsigned)time(NULL));
-	int arr[100], length;
+int main() {
+    srand((unsigned)time(NULL));
 
-	cout << "Number Of Elements: ";
-	cin >> length;
+    int arr[100], arr2[100], length;
 
-	AddElements(arr, length);
-	cout << "\nArray Elements Before Shuffle:\n";
-	PrintArray(arr, length);
-	cout << "\nArray Elements After Shuffle:\n";
-	Shuffle(arr, length);
-	PrintArray(arr, length);
+    fillArrayWithRandomNumbers(arr, length);
+    reverseArray(arr, arr2, length);
+
+    cout << "\nArray 1 elements:\n";
+    printArray(arr, length);
+
+    cout << "\nArray 2 elements after copy:\n";
+    printArray(arr2, length);
+
+    return 0;
 }
