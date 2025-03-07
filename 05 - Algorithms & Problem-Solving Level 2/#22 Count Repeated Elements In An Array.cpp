@@ -1,45 +1,65 @@
-// Count Repeated Elements In An Array.
-// https://programmingadvices.com/courses/1811531/lectures/41359985/comments/25782257
+// Problem: Count Frequency of a Number in an Array
+// Coded By: @X99099
 
 #include <iostream>
-
 using namespace std;
 
-void AddElements(int array[], int length)
+int ReadPositiveNumber(string msg)
 {
-	for (int i = 0; i < length; i++)
-	{
-		cout << "Element [" << i + 1 << "]: ";
-		cin >> array[i];
-	}
+    int num = 0;
+    do
+    {
+        cout << msg << endl;
+        cin >> num;
+    } while (num <= 0);
+    
+    return num;
 }
 
-void PrintArray(int array[], int length)
+void ReadArray(int arr[100], int &arrLength)
 {
-	cout << "\nOriginal Array: ";
-	for (int i = 0; i < length; i++)
-		cout << array[i] << ' ';
-	cout << endl;
+    cout << "\nEnter number of elements:\n";
+    cin >> arrLength;
+    
+    cout << "\nEnter array elements: \n";
+    for (int i = 0; i < arrLength; i++)
+    {
+        cout << "Element [" << i + 1 << "] : ";
+        cin >> arr[i];
+    }
+    cout << endl;
 }
 
-int CheckFrequency(int array[], int length, int number)
+void PrintArray(int arr[100], int arrLength)
 {
-	int frequency = 0;
-	for (int i = 0; i < length; i++)
-		if (array[i] == number) frequency++;
-	return frequency;
+    for (int i = 0; i < arrLength; i++)
+        cout << arr[i] << " ";
+    cout << "\n";
 }
 
-int main()
+int TimesRepeated(int num, int arr[100], int arrLength)
 {
-	int elems[100], elemsCount, checkNumber;
+    int count = 0;
+    for (int i = 0; i < arrLength; i++)
+    {
+        if (num == arr[i])
+            count++;
+    }
+    return count;
+}
 
-	cout << "Number Of Elements: ";
-	cin >> elemsCount;
-	cout << "\nEnter Array Elements\n";
-	AddElements(elems, elemsCount);
-	cout << "\nCheck Frequency Of Number: ";
-	cin >> checkNumber;
-	PrintArray(elems, elemsCount);
-	cout << checkNumber << " Is Repeated " << CheckFrequency(elems, elemsCount, checkNumber) << " Time(s).\n";
+int main() 
+{
+    int arr[100], arrLength, numberToCheck;
+
+    ReadArray(arr, arrLength);
+    numberToCheck = ReadPositiveNumber("Enter the number you want to check: ");
+
+    cout << "\nOriginal array: ";
+    PrintArray(arr, arrLength);
+
+    cout << "\nNumber " << numberToCheck << " is repeated ";
+    cout << TimesRepeated(numberToCheck, arr, arrLength) << " time(s)\n";
+
+    return 0;
 }
