@@ -1,67 +1,82 @@
-// Copy Only Prime Numbers
-// https://programmingadvices.com/courses/1811531/lectures/41372906/comments/25782557
+// Problem: Copy Only Prime Numbers from One Array to Another
+// Coded By: @X99099
 
 #include <iostream>
+#include <cstdlib>
+#include <ctime>
+#include <cmath>
 
 using namespace std;
 
-int RandomNumber(int From, int To)
-{
-	return rand() % (To - From + 1) + From;
+// Function to generate a random number in a given range
+int randomNumber(int from, int to) {
+    return rand() % (to - from + 1) + from;
 }
 
-void AddElements(int arr[], int length)
-{
-	for (int i = 0; i < length; i++)
-		arr[i] = RandomNumber(1, 100);
+// Function to print the contents of an array
+void printArray(const int array[], int arrLength) {
+    for (int i = 0; i < arrLength; i++) {
+        cout << array[i] << " ";
+    }
+    cout << endl;
 }
 
-bool CheckPrime(int x)
-{
-	if (x <= 1) return false;
-	if (x == 2) return true;
-	if (x % 2 == 0) return false;
-
-	for (int i = 3; i <= sqrt(x); i += 2)
-		if (x % i == 0) return false;
-
-	return true;
+// Function to fill an array with random numbers in a given range
+void fillArray(int array[], int arrLength, int from = 1, int to = 99) {
+    for (int i = 0; i < arrLength; i++) {
+        array[i] = randomNumber(from, to);
+    }
 }
 
-int CopyArray(int arr1[], int arr2[], int length)
-{
-	int arr2length = 0;
-	for (int i = 0; i < length; i++)
-	{
-		if (CheckPrime(arr1[i]))
-		{
-			arr2[arr2length] = arr1[i];
-			arr2length++;
-		}
-	}
-	return arr2length;
+// Function to add a number to the array and update its length
+void addArrayElement(int arr[], int& arrLength, int number) {
+    arr[arrLength++] = number;
 }
 
-void PrintArray(int arr[], int length)
-{
-	for (int i = 0; i < length; i++)
-		cout << arr[i] << ' ';
-	cout << endl;
+// Function to check if a number is prime
+bool isPrime(int x) {
+    if (x < 2) return false;
+    if (x == 2 || x == 3) return true;
+    if (x % 2 == 0 || x % 3 == 0) return false;
+
+    int sqrtX = sqrt(x);
+    for (int i = 5; i <= sqrtX; i += 6) {
+        if (x % i == 0 || x % (i + 2) == 0)
+            return false;
+    }
+
+    return true;
 }
 
-int main()
-{
-	srand((unsigned)time(NULL));
-	int arr1[100], arr2[100], arr1length, arr2length;
+// Function to copy only prime numbers from one array to another
+void copyPrimeNumbers(const int source[], int destination[], int sourceLength, int& destinationLength) {
+    for (int i = 0; i < sourceLength; i++) {
+        if (isPrime(source[i])) {
+            addArrayElement(destination, destinationLength, source[i]);
+        }
+    }
+}
 
-	cout << "Array Length: ";
-	cin >> arr1length;
+// Main function: Program entry point
+int main() {
+    srand((unsigned)time(NULL));
 
-	AddElements(arr1, arr1length);
-	arr2length = CopyArray(arr1, arr2, arr1length);
+    const int MAX_SIZE = 100;
+    int arr[MAX_SIZE];
+    int arrLength = 10;
 
-	cout << "\nArray 1 Elements:\n";
-	PrintArray(arr1, arr1length);
-	cout << "\nArray 2 Of Prime Numbers:\n";
-	PrintArray(arr2, arr2length);
+    fillArray(arr, arrLength);
+
+    int primeArr[MAX_SIZE];
+    int primeArrLength = 0;
+
+    copyPrimeNumbers(arr, primeArr, arrLength, primeArrLength);
+
+    cout << "\nOriginal Array Elements:\n";
+    printArray(arr, arrLength);
+
+    cout << "\nPrime Numbers Array:\n";
+    printArray(primeArr, primeArrLength);
+
+    return 0;
 }
