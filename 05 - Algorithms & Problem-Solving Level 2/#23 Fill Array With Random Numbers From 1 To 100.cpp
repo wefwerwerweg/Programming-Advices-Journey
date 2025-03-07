@@ -1,36 +1,40 @@
 // Fill Array With Random Numbers From 1 To 100
-// https://programmingadvices.com/courses/1811531/lectures/41360030/comments/25782320
+// Coded By: @X99099
 
 #include <iostream>
-
 using namespace std;
 
-int RandomNumber(int From, int To)
+int RandomNumber(int from, int to)
 {
-	int randNum = rand() % (To - From + 1) + From;
-	return randNum;
+    return rand() % (to - from + 1) + from;
 }
 
-void AddElements(int arr[], int length)
+void FillArrayWithRandomNumbers(int arr[100], int &arrLength)
 {
-	for (int i = 0; i < length; i++)
-		arr[i] = RandomNumber(1, 100);
+    cout << "\nEnter number of elements:\n";
+    cin >> arrLength;
+    
+    for (int i = 0; i < arrLength; i++)
+        arr[i] = RandomNumber(1, 100);
 }
 
-void PrintArray(int arr[], int length)
+void PrintArray(int arr[100], int arrLength)
 {
-	cout << "\nArray Elements: ";
-	for (int i = 0; i < length; i++)
-		cout << arr[i] << ' ';
-	cout << endl;
+    for (int i = 0; i < arrLength; i++)
+        cout << arr[i] << " ";
+    cout << "\n";
 }
 
 int main()
 {
-	srand((unsigned)time(NULL));
-	int arr[100], length;
-	cout << "Array Length: ";
-	cin >> length;
-	AddElements(arr, length);
-	PrintArray(arr, length);
+    srand((unsigned)time(NULL));
+
+    int arr[100], arrLength;
+
+    FillArrayWithRandomNumbers(arr, arrLength);
+
+    cout << "\nArray Elements: ";
+    PrintArray(arr, arrLength);
+
+    return 0;
 }
