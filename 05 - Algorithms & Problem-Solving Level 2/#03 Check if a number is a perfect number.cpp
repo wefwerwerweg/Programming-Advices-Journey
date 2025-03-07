@@ -1,25 +1,45 @@
-// Check if a number is a perfect number
-// https://programmingadvices.com/courses/1811531/lectures/41205480/comments/25772286
+// Problem: Check if a Number is Perfect
+// Coded By: @X99099
 
 #include <iostream>
-
+#include <string>
 using namespace std;
 
-string CheckPerfectNumber(int n)
+int GetPositiveNumber(string Message)
 {
-	int sum = 0;
+    int Number = 0;
+    do
+    {
+        cout << Message << endl;
+        cin >> Number;
+    } while (Number <= 0);
+    
+    return Number;
+}
 
-	for (int i = 1; i <= n / 2; i++)
-		if (n % i == 0) sum += i;
+bool IsPerfectNumber(int Number)
+{
+    int Sum = 0;
+    
+    for (int i = 1; i < Number; i++)
+    {
+        if (Number % i == 0)
+            Sum += i;
+    }
+    
+    return Number == Sum;
+}
 
-	if (sum == n) return " is perfect.\n";
-	else return " is not perfect.\n";
+void DisplayResults(int Number)
+{
+    if (IsPerfectNumber(Number))
+        cout << Number << " is a perfect number.\n";
+    else
+        cout << Number << " is not a perfect number.\n";
 }
 
 int main()
 {
-	int n;
-	cout << "Check Perfect Number: ";
-	cin >> n;
-	cout << n << CheckPerfectNumber(n);
+    DisplayResults(GetPositiveNumber("Enter a positive number: "));
+    return 0;
 }
