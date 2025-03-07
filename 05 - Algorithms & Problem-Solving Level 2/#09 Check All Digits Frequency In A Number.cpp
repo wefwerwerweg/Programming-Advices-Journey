@@ -1,31 +1,41 @@
 // Check All Digits Frequency In A Number
-// https://programmingadvices.com/courses/1811531/lectures/41327514/comments/25773256
+// Coded By: @X99099
 
 #include <iostream>
-
 using namespace std;
 
-int CheckFrequency(int number, short digit)
-{
-	int frequency = 0;
-	while (number != 0)
-	{
-		if (number % 10 == digit) frequency++;
-		number /= 10;
-	}
-	return frequency;
+int getPositiveNumber(const string& prompt) {
+    int num;
+    do {
+        cout << prompt << endl;
+        cin >> num;
+    } while (num <= 0);
+    
+    return num;
 }
 
-int main()
-{
-	int number;
-	cout << "Enter A Number: ";
-	cin >> number;
+int getDigitCount(short digit, int num) {
+    int count = 0;
+    while (num) {
+        if (num % 10 == digit) 
+            count++;
+        num /= 10;
+    }
+    return count;
+}
 
-	for (int digit = 0; digit <= 9; digit++)
-	{
-		int frequency = CheckFrequency(number, digit);
-		if (frequency > 0)
-			cout << "\nDigit " << digit << " Frequency Is " << frequency << " Time(s).";
-	}
+void displayDigitCounts(int num) {
+    cout << endl;
+    for (int i = 0; i < 10; i++) {
+        int count = getDigitCount(i, num);
+        if (count) 
+            cout << "Digit " << i << " occurs " << count << " time(s).\n";
+    }
+}
+
+int main() {
+    int num = getPositiveNumber("Enter a positive number:");
+    displayDigitCounts(num);
+    
+    return 0;
 }
