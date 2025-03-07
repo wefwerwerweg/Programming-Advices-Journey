@@ -56,7 +56,7 @@ int main() {
     srand((unsigned)time(NULL));
 
     int arr[] = { 10, 10, 10, 50, 50, 70, 70, 70, 70, 90 };
-    int arrLength = sizeof(arr) / sizeof(arr[0]);
+    int arrLength = 10;
 
     int uniqueArr[100];
     int uniqueArrLength = 0;
