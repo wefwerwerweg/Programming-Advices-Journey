@@ -1,25 +1,35 @@
-// Sum All Digits In A Number
-// https://programmingadvices.com/courses/1811531/lectures/41306747/comments/25772868
+// Problem: Sum of Digits of a Positive Number
+// Coded By: @X99099
 
 #include <iostream>
-
 using namespace std;
 
-int SumDigits(int n)
+int ReadPositiveNumber(string Message)
 {
-	int sum = 0;
-	while (n != 0)
-	{
-		sum += n % 10;
-		n /= 10;
-	}
-	return sum;
+    int Number;
+    do
+    {
+        cout << Message << endl;
+        cin >> Number;
+    } while (Number <= 0);
+    return Number;
+}
+
+int SumOfDigits(int Number)
+{
+    int Sum = 0;
+    while (Number > 0)
+    {
+        Sum += Number % 10;
+        Number /= 10;
+    }
+    return Sum;
 }
 
 int main()
 {
-	int n;
-	cout << "Sum All Digits In: ";
-	cin >> n;
-	cout << "Sum Of Digits = " << SumDigits(n);
+    cout << "\nSum Of Digits = " 
+         << SumOfDigits(ReadPositiveNumber("Please enter a positive number?"))
+         << "\n";
+    return 0;
 }
