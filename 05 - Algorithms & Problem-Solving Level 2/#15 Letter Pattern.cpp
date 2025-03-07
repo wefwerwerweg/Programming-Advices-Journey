@@ -1,24 +1,36 @@
-// Letter Pattern
-// https://programmingadvices.com/courses/1811531/lectures/41358862/comments/25774950
+// Problem: Print Letter Pattern
+// Coded By: @X99099
 
 #include <iostream>
-
 using namespace std;
 
-void LetterPattern(int n)
+int getPositiveNumber(string msg)
 {
-	for (int i = 1; i <= n; i++)
-	{
-		for (int j = 0; j < i; j++) cout << char(i + 64);
-		cout << endl;
-	}
+    int num = 0;
+    do
+    {
+        cout << msg << endl;
+        cin >> num;
+    } while (num <= 0);
+    return num;
+}
+
+void printLetterPattern(int num)
+{
+    cout << "\n";
+
+    for (int i = 65; i < 65 + num; i++)
+    {
+        for (int j = 1; j <= i - 65 + 1; j++)
+        {
+            cout << char(i);
+        }
+        cout << "\n";
+    }
 }
 
 int main()
 {
-	int n;
-	cout << "Enter Number Of Letters: ";
-	cin >> n;
-	cout << endl;
-	LetterPattern(n);
+    printLetterPattern(getPositiveNumber("Please enter a positive number?"));
+    return 0;
 }
