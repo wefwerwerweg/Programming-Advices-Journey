@@ -1,24 +1,32 @@
-// Number Pattern
-// https://programmingadvices.com/courses/1811531/lectures/41358716/comments/25774778
+// Problem: Print Number Pattern
+// Coded By: @X99099
 
 #include <iostream>
-
+#include <string>
 using namespace std;
 
-void Pattern(int n)
-{
-	for (int i = 1; i <= n; i++)
-	{
-		for (int j = 0; j < i; j++) cout << i;
-		cout << endl;
-	}
+int getPositiveNumber(const string& prompt) {
+    int num;
+    do {
+        cout << prompt << endl;
+        cin >> num;
+    } while (num <= 0);
+    
+    return num;
 }
 
-int main()
-{
-	int n;
-	cout << "Enter A Number: ";
-	cin >> n;
-	cout << endl;
-	Pattern(n);
+void printNumberPattern(int num) {
+    for (int i = 1; i <= num; i++) {
+        for (int j = 1; j <= i; j++) {
+            cout << i;
+        }
+        cout << "\n";
+    }
+}
+
+int main() {
+    int num = getPositiveNumber("Enter a positive number:");
+    printNumberPattern(num);
+    
+    return 0;
 }
