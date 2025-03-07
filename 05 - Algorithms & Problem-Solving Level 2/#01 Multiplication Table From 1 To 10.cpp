@@ -1,24 +1,36 @@
-// Multiplication Table From 1 To 10
-// https://programmingadvices.com/courses/1811531/lectures/41056828/comments/25767082
+// Problem: Multiplication Table from 1 to 10
+// Coded By: @X99099
 
 #include <iostream>
-
 using namespace std;
 
-int main()
-{
-	cout << "\n\n\t\t\tMultiplication Table From 1 To 10\n\n";
-	for (int i = 1; i <= 10; i++) cout << '\t' << i;
-	cout << endl;
-	for (int i = 1; i <= 83; i++) cout << '_';
-	cout << endl;
+void PrintTableHeader() {
+    cout << "\n\n\t\t\t Multiplication Table From 1 to 10\n\n\t";
+    
+    for (int i = 1; i <= 10; i++)
+        cout << i << "\t";
 
-	for (int i = 1; i <= 10; i++)
-	{
-		if (i < 10) cout << i << "    |  ";
-		else        cout << i << "   |  ";
+    cout << "\n___________________________________________________________________________________\n";
+}
 
-		for (int j = 1; j <= 10; j++) cout << i * j << '\t';
-		cout << endl;
-	}
+string ColumnSeparator(int i) {
+    return (i < 10) ? "   |" : "  |";
+}
+
+void PrintMultiplicationTable() {
+    PrintTableHeader();
+
+    for (int i = 1; i <= 10; i++) {
+        cout << " " << i << ColumnSeparator(i) << "\t";
+
+        for (int j = 1; j <= 10; j++)
+            cout << i * j << "\t";
+
+        cout << endl;
+    }
+}
+
+int main() {
+    PrintMultiplicationTable();
+    return 0;
 }
