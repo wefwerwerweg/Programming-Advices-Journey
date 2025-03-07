@@ -1,5 +1,5 @@
-// Coded By @X99099
-// Problem #34: Return Number In Array
+// Problem: Return Number In Array
+// Coded By: @X99099
 
 #include <iostream>
 #include <cstdlib>
@@ -7,67 +7,51 @@
 
 using namespace std;
 
-// Function to generate a random number in a given range
 int randomNumber(int from, int to) {
-    return rand() % (to - from + 1) + from;  // Generate a random number between 'from' and 'to'
+    return rand() % (to - from + 1) + from;
 }
 
-// Function to get a positive number from the user
 int getPositiveNumber(const string& prompt) {
-    int number;
+    int num;
     while (true) {
         cout << prompt;
-        cin >> number;
-        if (number > 0) break;  // Ensure the number is positive
+        cin >> num;
+        if (num > 0) break;
         cout << "Please enter a positive number.\n";
     }
-    return number;
+    return num;
 }
 
-// Function to fill an array with random numbers between 1 and 99
-void fillArray(int array[], int size) {
+void fillArray(int arr[], int size) {
     for (int i = 0; i < size; i++) {
-        array[i] = randomNumber(1, 99);  // Fill the array with random numbers between 1 and 99
+        arr[i] = randomNumber(1, 99);
     }
 }
 
-// Function to print the contents of an array
-void printArray(const int array[], int size) {
-    cout << "Array Elements: ";
+void printArray(const int arr[], int size) {
     for (int i = 0; i < size; i++) {
-        cout << array[i] << " ";  // Print each element
+        cout << arr[i] << " ";
     }
     cout << endl;
 }
 
-// Function to search for a number in the array
-bool arraySearch(int array[], int number, int size) {
+bool searchNumber(int arr[], int num, int size) {
     for (int i = 0; i < size; i++) {
-        if (array[i] == number) {
-            return true;  // Return true if the number is found
-        }
+        if (arr[i] == num) return true;
     }
-    return false;  // Return false if the number is not found
+    return false;
 }
 
-// Main function: Entry point of the program
 int main() {
-    srand((unsigned)time(NULL));  // Seed the random number generator
+    srand(time(0));
 
-    int arr[100];  // Declare an array to hold up to 100 elements
-
-    // Get the number of elements from the user
+    int arr[100];
     int arrLength = getPositiveNumber("How many elements: ");
-
-    // Fill the array with random numbers and print the array
     fillArray(arr, arrLength);
     printArray(arr, arrLength);
-    
-    // Get the number to search for from the user
-    int number = getPositiveNumber("Enter a Number To Search For: ");
 
-    // Perform the search and print the result
-    if (arraySearch(arr, number, arrLength)) {
+    int num = getPositiveNumber("Enter a Number To Search For: ");
+    if (searchNumber(arr, num, arrLength)) {
         cout << "Yes, The Number Is Found :-)" << endl;
     } else {
         cout << "No, The Number Isn't Found :-(" << endl;
