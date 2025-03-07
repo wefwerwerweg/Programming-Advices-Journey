@@ -50,5 +50,4 @@ int main() {
     cout << "\nArray Length: " << arrLength << endl;
     printArray(arr, arrLength);
 
-    return 0; // Return 0 to indicate successful program execution
-}
+    return 0; 
