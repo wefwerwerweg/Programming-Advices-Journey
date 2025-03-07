@@ -1,52 +1,73 @@
-// Copy Distinct Numbers To Array
-// https://programmingadvices.com/courses/1811531/lectures/41415410/comments/25787562
+// Problem: Copy Distinct Numbers To Array
+// Coded By: @X99099
 
 #include <iostream>
+#include <cstdlib>
+#include <ctime>
 
 using namespace std;
 
-void AddArrayElement(int num, int arr[], int& length)
-{
-	arr[length++] = num;
+// Function to generate a random number in a given range
+int randomNumber(int from, int to) {
+    return rand() % (to - from + 1) + from;
 }
 
-int CheckNumIndexInArr(int arr[], int length, int n)
-{
-	for (int i = 0; i < length; i++)
-		if (arr[i] == n) return i;
-	return -1;
+// Function to print the contents of an array
+void printArray(const int array[], int arrLength) {
+    for (int i = 0; i < arrLength; i++) {
+        cout << array[i] << " ";
+    }
+    cout << endl;
 }
 
-bool CheckNumInArr(int arr[], int length, int n)
-{
-	return CheckNumIndexInArr(arr, length, n) != -1;
+// Function to fill an array with random numbers in a given range
+void fillArray(int array[], int arrLength, int from = 1, int to = 99) {
+    for (int i = 0; i < arrLength; i++) {
+        array[i] = randomNumber(from, to);
+    }
 }
 
-void CopyDistinctArray(int src[], int dest[], int srcLength, int& destLength)
-{
-	for (int i = 0; i < srcLength; i++)
-		if (!CheckNumInArr(dest, destLength, src[i])) AddArrayElement(src[i], dest, destLength);
+// Function to add a number to the array and update its length
+void addArrayElement(int arr[], int& arrLength, int number) {
+    arr[arrLength++] = number;
 }
 
-void PrintArray(int arr[], int length)
-{
-	for (int i = 0; i < length; i++)
-		cout << arr[i] << ' ';
-	cout << endl;
+// Function to search for a number in the array
+bool arraySearch(const int array[], int size, int number) {
+    for (int i = 0; i < size; i++) {
+        if (array[i] == number) {
+            return true;  // Number found
+        }
+    }
+    return false;  // Number not found
 }
 
-int main()
-{
-	srand((unsigned)time(NULL));
+// Function to copy unique elements from one array to another
+void copyUniqueElements(const int source[], int destination[], int sourceLength, int& destinationLength) {
+    for (int i = 0; i < sourceLength; i++) {
+        if (!arraySearch(destination, destinationLength, source[i])) {
+            addArrayElement(destination, destinationLength, source[i]);
+        }
+    }
+}
 
-	int arr1[] = { 10,10,10,50,50,70,70,70,70,90 };
-	int arr1Length = 10;
-	int arr2[100];
-	int arr2Length = 0;
+// Main function: Program entry point
+int main() {
+    srand((unsigned)time(NULL));
 
-	CopyDistinctArray(arr1, arr2, arr1Length, arr2Length);
-	cout << "Array 1 Elements:\n";
-	PrintArray(arr1, arr1Length);
-	cout << "\nArray 2 Distinct Elements:\n";
-	PrintArray(arr2, arr2Length);
+    int arr[] = { 10, 10, 10, 50, 50, 70, 70, 70, 70, 90 };
+    int arrLength = sizeof(arr) / sizeof(arr[0]);
+
+    int uniqueArr[100];
+    int uniqueArrLength = 0;
+
+    copyUniqueElements(arr, uniqueArr, arrLength, uniqueArrLength);
+
+    cout << "\nOriginal Array:\n";
+    printArray(arr, arrLength);
+
+    cout << "\nUnique Elements Array:\n";
+    printArray(uniqueArr, uniqueArrLength);
+
+    return 0;
 }
