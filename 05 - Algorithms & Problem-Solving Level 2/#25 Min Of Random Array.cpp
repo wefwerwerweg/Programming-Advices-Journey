@@ -1,45 +1,48 @@
 // Min Of Random Array
-// https://programmingadvices.com/courses/1811531/lectures/41360394/comments/25782367
+// Coded By: @X99099
 
 #include <iostream>
-
 using namespace std;
 
-int RandomNumber(int From, int To)
-{
-	int randNum = rand() % (To - From + 1) + From;
-	return randNum;
+int RandomNumber(int From, int To) {
+    return rand() % (To - From + 1) + From;
 }
 
-void AddElements(int arr[], int length)
-{
-	for (int i = 0; i < length; i++)
-		arr[i] = RandomNumber(1, 100);
+void FillArrayWithRandomNumbers(int arr[100], int &arrLength) {
+    cout << "\nEnter number of elements:\n";
+    cin >> arrLength;
+
+    for (int i = 0; i < arrLength; i++)
+        arr[i] = RandomNumber(1, 100);
 }
 
-void PrintArray(int arr[], int length)
-{
-	cout << "\nArray Elements: ";
-	for (int i = 0; i < length; i++)
-		cout << arr[i] << ' ';
-	cout << endl;
+void PrintArray(int arr[100], int arrLength) {
+    for (int i = 0; i < arrLength; i++)
+        cout << arr[i] << " ";
+    cout << "\n";
 }
 
-int MinNumber(int arr[], int length)
-{
-	int min = 100;
-	for (int i = 0; i < length; i++)
-		if (arr[i] < min) min = arr[i];
-	return min;
+int MinNumberInArray(int arr[100], int arrLength) {
+    int Min = arr[0];
+
+    for (int i = 1; i < arrLength; i++) {
+        if (arr[i] < Min) Min = arr[i];
+    }
+
+    return Min;
 }
 
-int main()
-{
-	srand((unsigned)time(NULL));
-	int arr[100], length;
-	cout << "Array Length: ";
-	cin >> length;
-	AddElements(arr, length);
-	PrintArray(arr, length);
-	cout << "Min Number Is: " << MinNumber(arr, length) << endl;
+int main() {
+    srand((unsigned)time(NULL));
+
+    int arr[100], arrLength;
+
+    FillArrayWithRandomNumbers(arr, arrLength);
+
+    cout << "\nArray Elements: ";
+    PrintArray(arr, arrLength);
+
+    cout << "\nMin Number is: " << MinNumberInArray(arr, arrLength) << endl;
+
+    return 0;
 }
