@@ -1,91 +1,90 @@
-// Fill Array With Keys
+// Problem: Generate Random Keys
+// Coded By: @X99099
+
 #include <iostream>
-#include <cstdlib>
-#include <ctime>
 using namespace std;
 
-// Enumeration for character types
-enum enCharType {
-    SmallLetter = 1,        // Lowercase letters (ASCII range 97-122)
-    CapitalLetter = 2,      // Uppercase letters (ASCII range 65-90)
-    SpecialCharacter = 3,   // Special characters (ASCII range 33-47)
-    Digit = 4               // Digits (ASCII range 48-57)
+enum enCharType { 
+    SmallLetter = 1,    
+    CapitalLetter = 2,   
+    SpecialCharacter = 3,
+    Digit = 4            
 };
 
-// Function to get a positive number from the user
-int getPositiveNumber(const string& prompt) {
-    int number;
-    while (true) {
-        cout << prompt;
-        cin >> number;
-        if (number > 0) break;
-        cout << "Please enter a positive number.\n";
+int RandomNumber(int From, int To)
+{
+    return rand() % (To - From + 1) + From;
+}
+
+char GetRandomCharacter(enCharType CharType)
+{
+    switch (CharType)
+    {
+        case enCharType::SmallLetter:
+            return char(RandomNumber('a', 'z'));
+        case enCharType::CapitalLetter:
+            return char(RandomNumber('a', 'z'));
+        case enCharType::SpecialCharacter:
+            return char(RandomNumber('a', 'z'));
+        case enCharType::Digit:
+            return char(RandomNumber('a', 'z'));
     }
-    return number;
+    return '\0';
 }
 
-// Function to generate a random number in a given range
-int randomNumber(int from, int to) {
-    return rand() % (to - from + 1) + from;
+void PrintStringArray(string arr[100], int arrLength)
+{
+    cout << "\nArray elements:\n\n";
+    for (int i = 0; i < arrLength; i++)
+        cout << "Array[" << i << "] : " << arr[i] << "\n";
+    cout << "\n";
 }
 
-// Function to get a random character of a specific type
-char getRandomCharacter(enCharType charType) {
-    switch (charType) {
-        case SmallLetter: return char(randomNumber('a', 'z'));
-        case CapitalLetter: return char(randomNumber('A', 'Z'));
-        case SpecialCharacter: return char(randomNumber(33, 47));
-        case Digit: return char(randomNumber('0', '9'));
-        default: return '\0'; // Return null character for invalid type
+string GenerateWord(enCharType CharType, short Length)
+{
+    string Word;
+    for (int i = 1; i <= Length; i++)
+        Word += GetRandomCharacter(CharType);
+    return Word;
+}
+
+string GenerateKey()
+{
+    string Key = "";
+    for (int i = 0; i < 3; i++)
+    {
+        Key += GenerateWord(enCharType::CapitalLetter, 4) + "-";
     }
+    Key += GenerateWord(enCharType::CapitalLetter, 4);
+    return Key;
 }
 
-// Function to generate a random 4-character key
-string generateKey() {
-    string key = "";
-    for (int i = 0; i < 4; i++) {
-        key += char(randomNumber('A', 'Z'));
-    }
-    return key;
+void FillArrayWithKeys(string arr[100], int arrLength)
+{
+    for (int i = 0; i < arrLength; i++)
+        arr[i] = GenerateKey();
 }
 
-// Function to fill an array with random keys
-void fillKeysArray(string keys[], int size) {
-    for (int i = 0; i < size; ++i) {
-        keys[i] = generateKey();
-    }
+int ReadPositiveNumber(string Message)
+{
+    int Number = 0;
+    do
+    {
+        cout << Message << endl;
+        cin >> Number;
+    } while (Number <= 0);
+    return Number;
 }
 
-// Function to print an array of keys
-void printKeysArray(const string keys[], int size, int index) {
-    cout << "[" << index << "] Keys: ";
-    for (int i = 0; i < size; i++) {
-        cout << keys[i];
-        if (i != size - 1) {
-            cout << '-';
-        }
-    }
-    cout << endl;
-}
-
-// Main function: Entry point of the program
 int main() {
     srand((unsigned)time(NULL));
-
-    // Get the number of arrays of keys to generate
-    int count = getPositiveNumber("How many arrays of keys? ");
-
-    const int keyCount = 4;
-    string keys[keyCount];
-
-    // Generate and print the keys arrays
-    for (int i = 0; i < count; i++) {
-        fillKeysArray(keys, keyCount);
-        printKeysArray(keys, keyCount, i);
-    }
-
+    
+    string arr[100];
+    int arrLength = ReadPositiveNumber("How many keys do you want to generate?\n");
+    
+    FillArrayWithKeys(arr, arrLength);
+    
+    PrintStringArray(arr, arrLength);
+    
     return 0;
 }
-
-// Problem: Fill Array With Keys
-// Coded By: @X99099
