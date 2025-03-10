@@ -1,20 +1,29 @@
-// MySQRT
-// https://programmingadvices.com/courses/1811531/lectures/41458875/comments/25788563
+// Problem: MySqrt Function
+// Coded By: @X99099
 
 #include <iostream>
-
+#include <cmath>
 using namespace std;
 
-float MySQRT(int num)
-{
-	return pow(num, 0.5);
+float getNumber(string message) {
+    float number = 0;
+
+    cout << message;
+    cin >> number;
+
+    return number;
 }
 
-int main()
-{
-	float n;
-	cout << "Enter A Number: ";
-	cin >> n;
-	cout << "\nMySQRT Result  : " << MySQRT(n);
-	cout << "\nC++ sqrt Result: " << sqrt(n) << endl;
+float mySqrt(float number) {
+    return pow(number, 0.5);  
+}
+
+int main() {
+    float number = getNumber("Please Enter a Number: ");
+    cout << "\n";
+
+    cout << "My Sqrt Result : " << mySqrt(number) << endl;
+    cout << "C++ Sqrt Result: " << sqrt(number) << endl;
+
+    return 0;
 }
