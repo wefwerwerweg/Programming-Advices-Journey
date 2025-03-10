@@ -14,15 +14,15 @@ This repository contains:
 ## 📂 Repository Structure
 
 
-📦 Programming-Advices-PSets
- ┣ 📂 05 - Algorithms & Problem-Solving Level 2
- ┃ ┣ 📜 #01 Multiplication Table From 1 To 10.cpp
- ┃ ┣ 📜 #02 Print All Prime Numbers From 1 To N.cpp
- ┃ ┗ ...
- ┣ 📂 Certificates
- ┃ ┣ 📜 Course5_Certificate.pdf
- ┃ ┗ 📜 Course6_Certificate.pdf
- ┣ 📜 README.md
+📦 **Programming-Advices-PSets**  
+ ┣ 📂 **05 - Algorithms & Problem-Solving Level 2**  
+ ┃ ┣ 📜 `#01 Multiplication Table From 1 To 10.cpp`  
+ ┃ ┣ 📜 `#02 Print All Prime Numbers From 1 To N.cpp`  
+ ┃ ┗ ...  
+ ┣ 📂 **Certificates**  
+ ┃ ┣ 📜 `Course5_Certificate.pdf`  
+ ┃ ┗ 📜 `Course6_Certificate.pdf`  
+ ┣ 📜 `README.md`
 
 
 ## 🎯 Goals
