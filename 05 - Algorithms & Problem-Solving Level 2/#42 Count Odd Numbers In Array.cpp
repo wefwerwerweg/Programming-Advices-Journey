@@ -1,44 +1,59 @@
-// Count Odd Numbers In Array
-// https://programmingadvices.com/courses/1811531/lectures/41429808/comments/25787883
+// Problem: Count Odd Numbers In Array
+// Coded By: @X99099 
 
 #include <iostream>
-
 using namespace std;
 
-int RandomNumber(int From, int To)
+int getNumber(string message)
 {
-	return rand() % (To - From + 1) + From;
+    int number = 0;
+
+    cout << message;
+    cin >> number;
+
+    return number;
 }
 
-void AddElements(int arr[], int length)
+void fillArray(int arr[], int max)
 {
-	for (int i = 0; i < length; i++)
-		arr[i] = RandomNumber(1, 100);
+    for (int i = 0; i < 100; i++) {
+        arr[i] = generateNumber(0, max);
+    }
 }
 
-int CountOddNumsInArray(int arr[], int length)
+void printArray(int arr[], int length)
 {
-	int count = 0;
-	for (int i = 0; i < length; i++)
-		if (arr[i] % 2) count++;
-	return count;
+    for (int i = 0; i < length; i++) {
+
+        cout << arr[i] << ", ";
+
+    }
+
+    cout << endl;
 }
 
-void PrintArray(int arr[], int length)
+bool CountOddNumsInArray(int arr[], int length)
 {
-	for (int i = 0; i < length; i++)
-		cout << arr[i] << ' ';
-	cout << endl;
+    int count = 0;
+
+    for (int i = 0; i < length; i++)
+    {
+        if (arr[i] % 2) count++;
+    }
+
+    return count;
 }
 
-int main()
-{
-	srand((unsigned)time(NULL));
-	int arr[100], length;
-	cout << "Number Of Elements: ";
-	cin >> length;
-	AddElements(arr, length);
-	cout << "Array Elements:";
-	PrintArray(arr, length);
-	cout << "\nOdd Numbers Count In Array: " << CountOddNumsInArray(arr, length) << endl;
+int main() {
+    srand((unsigned)time(NULL));
+
+    int arr[100];
+    int length = getNumber("Please Enter Array Length: ");    
+
+    fillArray(arr, length);
+    printArray(arr, length);
+
+    cout << "Odd Numbers In The Array Is " << CountOddNumsInArray(arr, length) << endl;
+
+    return 0;
 }
