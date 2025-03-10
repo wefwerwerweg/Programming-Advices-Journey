@@ -1,4 +1,4 @@
-// Problem: Count Odd Numbers In Array
+// Problem: Count Even Numbers In Array
 // Coded By: @X99099 
 
 #include <iostream>
