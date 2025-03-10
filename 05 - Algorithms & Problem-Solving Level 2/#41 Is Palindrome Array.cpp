@@ -1,29 +1,25 @@
-// Is Palindrome Array
-// https://programmingadvices.com/courses/1811531/lectures/41429476/comments/25787842
+// Problem: Is Palindrome Array
+// Coded By: @X99099
 
 #include <iostream>
-
 using namespace std;
 
-bool IsPalindromeArray(int arr[], int length)
-{
-	for (int i = 0; i < length / 2; i++)
-		if (arr[i] != arr[length - i - 1]) return false;
+bool isPalindromeArray(int arr[], int length) {
+    for (int i = 0; i < length / 2; i++) {
+        if (arr[i] != arr[length - i - 1])
+            return false;
+    }
+    return true;
 }
 
-void PrintArray(int arr[], int length)
-{
-	for (int i = 0; i < length; i++)
-		cout << arr[i] << ' ';
-	cout << endl;
-}
+int main() {
+    int arr[] = {10, 10, 30, 40, 30, 10, 10}; 
+    int length = 7;
 
-int main()
-{
-	int arr[] = { 10,20,30,40,30,20,10 };
-	int length = 7;
-	PrintArray(arr, length);
-	if (IsPalindromeArray(arr, length))
-		cout << "\nYes, Array Is Palindrome\n";
-	else cout << "\nNo, Array Is Not Palindrome\n";
+    if (isPalindromeArray(arr, length))
+        cout << "Yes, the array is a palindrome." << endl;
+    else
+        cout << "No, the array is not a palindrome." << endl;
+
+    return 0;
 }
