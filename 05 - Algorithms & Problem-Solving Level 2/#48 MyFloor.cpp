@@ -1,27 +1,38 @@
-// MyFloor
-// https://programmingadvices.com/courses/1811531/lectures/41457995/comments/25788380
+// Problem: MyFloor Function
+// Coded By: @X99099
 
 #include <iostream>
-
+#include <cmath>  
 using namespace std;
 
-int MyFloor(float num)
-{
-	int numToInt = int(num);
-	if (num >= 0) return numToInt;
-	else
-	{
-		// Make sure MyFloor(-10) = -10, and MyFloor(-10.1) = -11
-		if (num == numToInt) return numToInt;
-		else return numToInt - 1;
-	}
+float getNumber(string message) {
+    float number = 0;
+
+    cout << message;
+    cin >> number;
+
+    return number;
 }
 
-int main()
-{
-	float n;
-	cout << "Enter A Number: ";
-	cin >> n;
-	cout << "\nMyFloor Result  : " << MyFloor(n);
-	cout << "\nC++ Floor Result: " << floor(n) << endl;
+int getDecimalPart(float number) {
+    return (number - (int)number) * 10;
+}
+
+int myFloor(float number) {
+    float decimalPart = getDecimalPart(number);
+    int inPart = (int)number;
+
+    if (decimalPart >= -5 && number < 0) inPart--;
+
+    return inPart;
+}
+
+int main() {
+    float number = getNumber("Please Enter a Number: ");
+    cout << "\n";
+
+    cout << "My Floor Result : " << myFloor(number) << endl;
+    cout << "C++ Floor Result: " << floor(number) << endl;
+
+    return 0;
 }
