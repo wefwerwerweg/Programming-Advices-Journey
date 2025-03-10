@@ -4,6 +4,10 @@
 #include <iostream>
 using namespace std;
 
+int generateNumber(int min, int max) {
+    return rand() % (max - min + 1) + min;
+}
+
 int getNumber(string message)
 {
     int number = 0;
@@ -14,10 +18,10 @@ int getNumber(string message)
     return number;
 }
 
-void fillArray(int arr[], int max)
+void fillArray(int arr[], int length)
 {
-    for (int i = 0; i < 100; i++) {
-        arr[i] = generateNumber(0, max);
+    for (int i = 0; i < length; i++) {
+        arr[i] = generateNumber(0, 100);
     }
 }
 
@@ -25,22 +29,18 @@ void printArray(int arr[], int length)
 {
     for (int i = 0; i < length; i++) {
 
-        cout << arr[i] << ", ";
+        cout << arr[i] << " ";
 
     }
 
     cout << endl;
 }
 
-bool CountOddNumsInArray(int arr[], int length)
-{
+int countOddNumbersInArray(const int arr[], int length) {
     int count = 0;
-
-    for (int i = 0; i < length; i++)
-    {
-        if (arr[i] % 2) count++;
+    for (int i = 0; i < length; i++) {
+        if (arr[i] % 2 != 0) count++;  
     }
-
     return count;
 }
 
@@ -49,11 +49,12 @@ int main() {
 
     int arr[100];
     int length = getNumber("Please Enter Array Length: ");    
+    cout << "\n";
 
     fillArray(arr, length);
     printArray(arr, length);
 
-    cout << "Odd Numbers In The Array Is " << CountOddNumsInArray(arr, length) << endl;
+    cout << "Odd Numbers In The Array Is " << countOddNumbersInArray(arr, length) << endl;
 
     return 0;
 }
