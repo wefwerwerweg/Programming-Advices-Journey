@@ -1,27 +1,34 @@
-// MyCeil
-// https://programmingadvices.com/courses/1811531/lectures/41458438/comments/25788486
+// Problem: MyCeil Function
+// Coded By: @X99099
 
 #include <iostream>
-
+#include <cmath>  
 using namespace std;
 
-int MyCeil(float num)
-{
-	int numToInt = int(num);
-	if (num < 0) return numToInt;
-	else
-	{
-		// Make sure MyCeil(10) = 10, and MyCeil(10.1) = 11
-		if (num == numToInt) return numToInt;
-		else return numToInt + 1;
-	}
+float getNumber(string message) {
+    float number = 0;
+
+    cout << message;
+    cin >> number;
+
+    return number;
 }
 
-int main()
-{
-	float n;
-	cout << "Enter A Number: ";
-	cin >> n;
-	cout << "\nMyCeil Result  : " << MyCeil(n);
-	cout << "\nC++ Ceil Result: " << ceil(n) << endl;
+int myCeil(float number) {
+    int intPart = (int)number; 
+
+    if (number > intPart) intPart++;
+    
+    return intPart;
+}
+
+
+int main() {
+    float number = getNumber("Please Enter a Number: ");
+    cout << "\n";
+
+    cout << "My Floor Result : " << myCeil(number) << endl;
+    cout << "C++ Floor Result: " << ceil(number) << endl;
+
+    return 0;
 }
