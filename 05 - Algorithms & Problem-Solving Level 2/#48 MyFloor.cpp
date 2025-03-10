@@ -19,13 +19,13 @@ int getDecimalPart(float number) {
 }
 
 int myFloor(float number) {
-    float decimalPart = getDecimalPart(number);
-    int inPart = (int)number;
+    int number = (int)number;
 
-    if (decimalPart >= -5 && number < 0) inPart--;
+    if (number < 0) number--;
 
-    return inPart;
+    return number;
 }
+
 
 int main() {
     float number = getNumber("Please Enter a Number: ");
