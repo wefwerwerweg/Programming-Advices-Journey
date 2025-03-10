@@ -1,44 +1,31 @@
-// MyABS
-// https://programmingadvices.com/courses/1811531/lectures/41431575/comments/25787942
+// Problem: MyABS Function
+// Coded By: @X99099 
 
 #include <iostream>
-
+#include <cstdlib>
 using namespace std;
 
-int RandomNumber(int From, int To)
+int getNumber(string message)
 {
-	return rand() % (To - From + 1) + From;
+    int number = 0;
+
+    cout << message;
+    cin >> number;
+
+    return number;
 }
 
-void AddElements(int arr[], int length)
-{
-	for (int i = 0; i < length; i++)
-		arr[i] = RandomNumber(-100, 100);
+int myABS(int number) {
+    if (number >= 0)
+        return number;
+    return -number; 
 }
 
-int CountNegativeNumsInArray(int arr[], int length)
-{
-	int count = 0;
-	for (int i = 0; i < length; i++)
-		if (arr[i] < 0) count++;
-	return count;
-}
+int main() {
+    int number = getNumber("Please Enter a Number: ");    
+    cout << "\n";
 
-void PrintArray(int arr[], int length)
-{
-	for (int i = 0; i < length; i++)
-		cout << arr[i] << ' ';
-	cout << endl;
-}
-
-int main()
-{
-	srand((unsigned)time(NULL));
-	int arr[100], length;
-	cout << "Number Of Elements: ";
-	cin >> length;
-	AddElements(arr, length);
-	cout << "\nArray Elements:";
-	PrintArray(arr, length);
-	cout << "\nNegative Numbers Count In Array: " << CountNegativeNumsInArray(arr, length) << endl;
+    cout << "My ABS Result : " << myABS(number) << endl;
+    cout << "C++ ABS Result: " << abs(number);
+    return 0;
 }
