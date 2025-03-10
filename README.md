@@ -1,7 +1,7 @@
 
-# Programming-Advices-PSets
+# Programming-Advices-Journey
 
-Welcome to my **Programming-Advices-PSets** repository !  
+Welcome to my **Programming Advices Journey** repository !  
 This repository documents my journey through the **Programming-Advices** courses, starting from **Course 5 and beyond**.
 
 ## 📌 About This Repository
