@@ -14,16 +14,12 @@ float getNumber(string message) {
     return number;
 }
 
-int getDecimalPart(float number) {
-    return (number - (int)number) * 10;
-}
-
 int myFloor(float number) {
-    int number = (int)number;
+    int intPart = (int)number;
 
-    if (number < 0) number--;
+    if (intPart < 0) intPart--;
 
-    return number;
+    return intPart;
 }
 
 
