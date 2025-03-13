@@ -1,5 +1,6 @@
 // Project : 🎮 Stone, Paper, Scissors
 // Coded By : @X99099
+
 #include <iostream>
 #include <cstdlib>
 #include <ctime>
@@ -61,11 +62,11 @@ Choice getPlayerChoice() {
         cout << "Invalid choice! Please select a valid option.\n";
         return getPlayerChoice();
     }
-    return static_cast<Choice>(choice);
+    return Choice(choice);
 }
 
 Choice getComputerChoice() {
-    return static_cast<Choice>(randomNumber(3));
+    return Choice(randomNumber(3));
 }
 
 int randomNumber(int range) {
@@ -164,7 +165,7 @@ void playGame() {
 }
 
 int main() {
-    srand(static_cast<unsigned>(time(0)));  
+    srand(unsigned(time(0)));  
     bool play = true;
 
     while (play) {
